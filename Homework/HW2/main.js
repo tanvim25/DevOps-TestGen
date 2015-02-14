@@ -26,7 +26,7 @@ function main()
 
 function fakeDemo()
 {
-	console.log("---------------fake")
+	//console.log("---------------fake")
 	console.log( faker.phone.phoneNumber() );
 	console.log( faker.phone.phoneNumberFormat() );
 	console.log( faker.phone.phoneFormats() );
@@ -128,32 +128,27 @@ function generateTestCases()
 			for(var i = 0; i<2; i++){
 					for(param in params){
 						if(param.indexOf('phoneNumber') > -1){
-							// var number = faker.phone.phoneNumberFormat()
 							params[param] = "faker.phone.phoneNumberFormat()";
-							console.log("number=" + params[param]);
+							
 						} else if(param.indexOf('options') > -1){
-							params[param] = '"defined"';
+							params[param] = '"option"';
 						}
 					}
 
 					var args = _.map(params, function(value, key, list){
 						return value;
 					}).join(",");
-					console.log('----->>>' + args);
 					content += "subject.{0}({1});\n".format(funcName, args );
 			}
 			for(param in params){
 				if(param.indexOf('phoneNumber') > -1){
-					// var number = "212-212-212";
-					params[param] = "'212-867-756'";
-					console.log("number=" + params[param]);
+					params[param] = "'212-111-111'";
 				}else if(param.indexOf('options') > -1){
 					params[param] = '{"normalize": true}';
 				}
 				var args = _.map(params, function(value, key, list){
 					return value;
 				}).join(",");
-				console.log('----->>>' + args);
 				content += "subject.{0}({1});\n".format(funcName, args );
 			}
 		}
